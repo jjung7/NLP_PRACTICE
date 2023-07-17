@@ -86,8 +86,7 @@ np.save(open(DEFAULT_DATA_PATH_SAVE+DATA_PATH_SAVE+TEST_INPUT_DATA,'wb'),test_in
 np.save(open(DEFAULT_DATA_PATH_SAVE+DATA_PATH_SAVE+TEST_LABEL_DATA,'wb'),test_labels)
 
 #데이터 사전 json으로 저장
-with io.open(DEFAULT_DATA_PATH_SAVE + DATA_PATH_SAVE + DATA_CONFIGS, 'w', encoding='utf-8') as file:
-    json.dump(data_configs, file, ensure_ascii=False)
+json.dump(data_configs,open(DEFAULT_DATA_PATH_SAVE + DATA_PATH_SAVE + DATA_CONFIGS,'w'),ensure_ascii=False)
 import pickle
 with open(DEFAULT_DATA_PATH_SAVE + DATA_PATH_SAVE + 'tokenizer.pickle', 'wb') as handle:
     pickle.dump(word_vocab, handle)

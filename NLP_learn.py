@@ -21,8 +21,7 @@ DATA_CONFIGS = 'data_configs.json'
 train_input = np.load(open(DATA_PATH + INPUT_TRAIN_DATA,'rb'))
 train_input = pad_sequences(train_input,maxlen=train_input.shape[1])
 train_label = np.load(open(DATA_PATH + LABEL_TRAIN_DATA,'rb'))
-with open(DATA_PATH + DATA_CONFIGS, 'r', encoding='utf-8') as file:
-    prepro_configs = json.load(file)
+prepro_configs = json.load(open(DATA_PATH+DATA_CONFIGS,'r'))
 model_name = 'cnn_classifier_kr'
 BATCH_SIZE = 512
 NUM_EPOChS = 10
@@ -78,6 +77,5 @@ cp_callback = ModelCheckpoint(
 
 history = model.fit(train_input, train_label, batch_size=BATCH_SIZE, epochs = NUM_EPOChS,
                     validation_split=VALID_SPLIT, callbacks=[earlystop_callback, cp_callback])
-save_model('DATA/my_models')
-# tf.saved_model.save(model, 'DATA/my_models')
-# save_model(model, 'DATA/my_models.h5')
+save_model(model,'DATA/my_models')
+
