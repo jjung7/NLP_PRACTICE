@@ -23,7 +23,7 @@ class Category:
     positve = '긍정'
     negative = '부정'
 
-stop_words = ['은','는','이','가','하','아','것','들','의','있','되','수','보','주','등','한', '에']
+stop_words = ['은','좀','는','이','가','도','하','아','것','들','의','있','되','수','보','주','등','한', '에', '으로','를', '과', '잘']
 pattern = '[^가-힣ㄱ-ㅎㅏ-ㅣ\\s]' 
 clean_train_review = []
 okt = Okt()
@@ -62,6 +62,11 @@ train_labels = np.array(train_data['label'])
 test_inputs = pad_sequences(test_sequences, maxlen = MAX_SEQUENCE_LENGTH, padding='post')
 
 test_labels =  np.array(test_data['label'])
+
+
+
+   
+
 
 DEFAULT_DATA_PATH_SAVE = 'DATA/'
 DATA_PATH_SAVE = 'CLEAN_DATA/'

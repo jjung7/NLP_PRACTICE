@@ -23,15 +23,11 @@ while True:
     sentence = input('단어 입력: ')
     if sentence == '끝':
         break
-    sentence = re.sub(r'[^ㄱ-ㅎㅏ-ㅣ가-힣\\s ]','', sentence)
-    
+    sentence = re.sub(r'[^ㄱ-ㅎㅏ-ㅣ가-힣\\s ]','', sentence)    
     sentence = okt.morphs(sentence, stem=True) # 토큰화
     sentence = [word for word in sentence if not word in stopwords] # 불용어 제거
     vector  = tokenizer.texts_to_sequences(sentence)
     pad_new = pad_sequences(vector, maxlen = MAX_LENGTH) # 패딩
-    
-  
-   
     predictions = model.predict(pad_new)
     predictions = float(predictions.squeeze(-1)[0])
 
